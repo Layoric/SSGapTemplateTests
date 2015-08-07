@@ -159,6 +159,10 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+bower_components/
+staging-console/
+staging-winforms/
+
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -229,3 +233,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+src/BenchmarkAnalyzer/BenchmarkAnalyzer/BenchmarkAnalyzer/wwwroot_build/BenchmarkAnalyzer-console.exe
+src/BenchmarkAnalyzer/BenchmarkAnalyzer/BenchmarkAnalyzer/wwwroot_build/BenchmarkAnalyzer-winforms.exe
+src/React-Chat-Gap/React-Chat-Gap/React_Chat_Gap/wwwroot_build/React_Chat_Gap-console.exe
+*.7z

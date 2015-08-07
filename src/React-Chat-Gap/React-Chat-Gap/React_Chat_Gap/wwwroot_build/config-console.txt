@@ -1,0 +1,4 @@
+﻿;!@Install@!UTF-8!
+ExecuteFile="React_Chat_Gap.Console.exe"
+GUIMode="2"
+;!@InstallEnd@!
