@@ -123,8 +123,7 @@ module.exports = function (grunt) {
         'gulp:wwwroot-copy-partials',
         'gulp:wwwroot-copy-fonts',
         'gulp:wwwroot-copy-images',
-        'gulp:wwwroot-bundle',
-        'gulp:wwwroot-bundle-html'
+        'gulp:wwwroot-bundle'
     ]);
 
     grunt.registerTask('02-package-console', [
