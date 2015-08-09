@@ -2,27 +2,20 @@
 
 module.exports = function (grunt) {
     "use strict";
-
-    var path = require('path');
     // include gulp
     var gulp = require('gulp');
     // include plug-ins
-    var del = require('del');
     var uglify = require('gulp-uglify');
     var newer = require('gulp-newer');
     var useref = require('gulp-useref');
     var gulpif = require('gulp-if');
     var minifyCss = require('gulp-minify-css');
     var gulpReplace = require('gulp-replace');
-    var htmlBuild = require('gulp-htmlbuild');
-    var eventStream = require('event-stream');
-    var react = require('gulp-react');
     var webRoot = '../BenchmarkAnalyzer.Resources/';
 
     // Project configuration.
     grunt.initConfig({
         exec: {
-            jest: 'jest',
             'package-console': {
                 command: 'cmd /c "cd wwwroot_build && package-deploy-console.bat"',
                 exitCodes: [0, 1]
@@ -105,17 +98,6 @@ module.exports = function (grunt) {
                     .pipe(useref())
                     .pipe(gulp.dest(webRoot));
             },
-            //Static index.html bundling
-            'wwwroot-bundle-html': function () {
-                var assets = useref.assets({ searchPath: './' });
-                return gulp.src('./default.html')
-                    .pipe(assets)
-                    .pipe(gulpif('*.js', uglify()))
-                    .pipe(gulpif('*.css', minifyCss()))
-                    .pipe(assets.restore())
-                    .pipe(useref())
-                    .pipe(gulp.dest(webRoot));
-            },
             'wwwroot-copy-deploy-files': function () {
                 return gulp.src('./wwwroot_build/deploy/*.*')
                     .pipe(newer(webRoot))
@@ -130,30 +112,28 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-msbuild');
     grunt.loadNpmTasks('grunt-nuget');
 
-    grunt.registerTask('01-run-tests', ['exec:jest']);
-    grunt.registerTask('02-bundle-resources', [
+    grunt.registerTask('01-bundle-resources', [
         'gulp:wwwroot-copy-partials',
         'gulp:wwwroot-copy-fonts',
         'gulp:wwwroot-copy-images',
-        'gulp:wwwroot-bundle',
-        'gulp:wwwroot-bundle-html'
+        'gulp:wwwroot-bundle'
     ]);
 
-    grunt.registerTask('03-package-console', [
-        '02-bundle-resources',
+    grunt.registerTask('02-package-console', [
+        '01-bundle-resources',
         'nugetrestore:restore-console',
         'msbuild:release-console',
         'exec:package-console'
     ]);
-    grunt.registerTask('03-package-winforms', [
-        '02-bundle-resources',
+    grunt.registerTask('02-package-winforms', [
+        '01-bundle-resources',
         'nugetrestore:restore-winforms',
         'msbuild:release-winforms',
         'exec:package-winforms'
     ]);
 
-    grunt.registerTask('build', ['02-bundle-resources']);
-    grunt.registerTask('package', ['03-package-console', '03-package-winforms']);
+    grunt.registerTask('build', ['01-bundle-resources']);
+    grunt.registerTask('package', ['02-package-console', '02-package-winforms']);
 
     grunt.registerTask('default', ['build']);
 };
