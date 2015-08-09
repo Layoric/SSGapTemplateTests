@@ -128,13 +128,13 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('02-package-console', [
-        '02-bundle-resources',
+        '01-bundle-resources',
         'nugetrestore:restore-console',
         'msbuild:release-console',
         'exec:package-console'
     ]);
     grunt.registerTask('02-package-winforms', [
-        '02-bundle-resources',
+        '01-bundle-resources',
         'nugetrestore:restore-winforms',
         'msbuild:release-winforms',
         'exec:package-winforms'
