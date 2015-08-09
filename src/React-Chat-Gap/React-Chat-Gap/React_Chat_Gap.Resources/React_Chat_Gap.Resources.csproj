@@ -119,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="img\1438859653_Close_Box_Red.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="img\close.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\packages\ServiceStack.Gap.4.0.42\build\ServiceStack.Gap.targets" Condition="Exists('$(SolutionDir)\packages\ServiceStack.Gap.4.0.42\build\ServiceStack.Gap.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

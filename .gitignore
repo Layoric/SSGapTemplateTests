@@ -237,3 +237,5 @@ src/BenchmarkAnalyzer/BenchmarkAnalyzer/BenchmarkAnalyzer/wwwroot_build/Benchmar
 src/BenchmarkAnalyzer/BenchmarkAnalyzer/BenchmarkAnalyzer/wwwroot_build/BenchmarkAnalyzer-winforms.exe
 src/React-Chat-Gap/React-Chat-Gap/React_Chat_Gap/wwwroot_build/React_Chat_Gap-console.exe
 *.7z
+src/React-Chat-Gap/React-Chat-Gap/React_Chat_Gap/wwwroot_build/React_Chat_Gap-winforms.exe
+src/React-Chat-Gap/React-Chat-Gap/React_Chat_Gap/wwwroot_build/React_Chat_Gap-winforms.exe

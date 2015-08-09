@@ -22,7 +22,6 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         exec: {
-            jest: 'jest',
             'package-console': {
                 command: 'cmd /c "cd wwwroot_build && package-deploy-console.bat"',
                 exitCodes: [0, 1]
@@ -138,7 +137,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-msbuild');
     grunt.loadNpmTasks('grunt-nuget');
 
-    grunt.registerTask('01-run-tests', ['exec:jest']);
     grunt.registerTask('02-bundle-resources', [
         'gulp:wwwroot-copy-partials',
         'gulp:wwwroot-copy-fonts',

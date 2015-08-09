@@ -13,6 +13,9 @@ var Header = React.createClass({
 	showDialog: function () {
 		window.aboutDialog.show();
 	},
+	exitApplication: function() {
+		window.winForm.close();
+	},
     render: function() {
         var $this = this;
         return (
@@ -38,7 +41,7 @@ var Header = React.createClass({
                             <a href="/auth/github" className="github"></a>              
                           </span>}
 					<span style={{float:'right', width: '25px'}}>
-						<a onClick={window.close}><img src="/img/1438859653_Close_Box_Red.png" style={{height: '20px'}} /></a>
+						<a onClick={$this.exitApplication}><img src="/img/close.png" style={{height: '30px', 'margin-top':'-5px'}} /></a>
 					</span>
                 </div>
                 <ul id="channels" style={{margin: '0 0 0 30px'}}>

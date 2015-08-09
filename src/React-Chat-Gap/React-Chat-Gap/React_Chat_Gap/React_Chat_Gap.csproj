@@ -102,8 +102,8 @@
     <Content Include="css\app.css" />
     <Content Include="gruntfile.js" />
     <Content Include="default.cshtml" />
-    <Content Include="img\1438859653_Close_Box_Red.png" />
     <Content Include="img\bg.jpg" />
+    <Content Include="img\close.png" />
     <Content Include="img\facebook_normal.png" />
     <Content Include="img\favicon.png" />
     <Content Include="img\github_normal.png" />
@@ -112,7 +112,6 @@
     <Content Include="img\twitter_normal.png" />
     <Content Include="js\components\Actions.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="tests\unit\hello-test.js" />
     <Content Include="tests\preprocessor.js" />
     <Content Include="tests\README.txt" />
     <Content Include="packages.config">
@@ -165,6 +164,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tests\unit\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

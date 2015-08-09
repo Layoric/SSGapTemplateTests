@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
+using CefSharp.WinForms.Internals;
 
 namespace React_Chat_Gap.AppWinForms
 {
@@ -19,22 +20,18 @@ namespace React_Chat_Gap.AppWinForms
         public FormMain()
         {
             InitializeComponent();
-
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(292, 273);
-
-            this.ControlBox = false;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.VerticalScroll.Visible = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-
-            WindowState = FormWindowState.Maximized;
             chromiumBrowser = new ChromiumWebBrowser(Program.HostUrl)
             {
                 Dock = DockStyle.Fill
             };
             this.Controls.Add(chromiumBrowser);
+
+            this.FormClosing += (sender, args) =>
+            {
+                //Make closing feel more responsive.
+                this.Visible = false;
+            };
 
             this.FormClosed += (sender, args) =>
             {
@@ -42,6 +39,15 @@ namespace React_Chat_Gap.AppWinForms
             };
 
             chromiumBrowser.RegisterJsObject("aboutDialog", new AboutDialogJsObject(), camelCaseJavascriptNames: true);
+            chromiumBrowser.RegisterJsObject("winForm",new WinFormsApp(this));
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Left = Top = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
     }
 
@@ -50,6 +56,24 @@ namespace React_Chat_Gap.AppWinForms
         public void Show()
         {
             MessageBox.Show("ServiceStack with CefSharp + ReactJS", "React_Chat_Gap.AppWinForms", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+
+    public class WinFormsApp
+    {
+        public FormMain Form { get; set; }
+
+        public WinFormsApp(FormMain form)
+        {
+            Form = form;
+        }
+
+        public void Close()
+        {
+            Form.InvokeOnUiThreadIfRequired(() =>
+            {
+                Form.Close();  
+            });
         }
     }
 }

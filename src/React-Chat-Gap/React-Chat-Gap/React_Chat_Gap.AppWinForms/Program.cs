@@ -21,6 +21,7 @@ namespace React_Chat_Gap.AppWinForms
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
 
             new AppHost().Init().Start("http://*:1337/");
             "ServiceStack SelfHost listening at {0} ".Fmt(HostUrl).Print();
