@@ -7,15 +7,12 @@ module.exports = function (grunt) {
     // include gulp
     var gulp = require('gulp');
     // include plug-ins
-    var del = require('del');
     var uglify = require('gulp-uglify');
     var newer = require('gulp-newer');
     var useref = require('gulp-useref');
     var gulpif = require('gulp-if');
     var minifyCss = require('gulp-minify-css');
     var gulpReplace = require('gulp-replace');
-    var htmlBuild = require('gulp-htmlbuild');
-    var eventStream = require('event-stream');
     var react = require('gulp-react');
     var webRoot = '../React_Chat_Gap.Resources/';
 
@@ -108,21 +105,6 @@ module.exports = function (grunt) {
                     .pipe(useref())
                     .pipe(gulp.dest(webRoot));
             },
-            //Static index.html bundling
-            'wwwroot-bundle-html': function () {
-                var assets = useref.assets({ searchPath: './' });
-                var checkIfJsx = function (file) {
-                    return file.relative.indexOf('.jsx.js') !== -1;
-                };
-                return gulp.src('./default.html')
-                    .pipe(assets)
-                    .pipe(gulpif('*.jsx.js', react()))
-                    .pipe(gulpif(checkIfJsx, uglify()))
-                    .pipe(gulpif('*.css', minifyCss()))
-                    .pipe(assets.restore())
-                    .pipe(useref())
-                    .pipe(gulp.dest(webRoot));
-            },
             'wwwroot-copy-deploy-files': function () {
                 return gulp.src('./wwwroot_build/deploy/*.*')
                     .pipe(newer(webRoot))
@@ -137,7 +119,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-msbuild');
     grunt.loadNpmTasks('grunt-nuget');
 
-    grunt.registerTask('02-bundle-resources', [
+    grunt.registerTask('01-bundle-resources', [
         'gulp:wwwroot-copy-partials',
         'gulp:wwwroot-copy-fonts',
         'gulp:wwwroot-copy-images',
@@ -145,21 +127,21 @@ module.exports = function (grunt) {
         'gulp:wwwroot-bundle-html'
     ]);
 
-    grunt.registerTask('03-package-console', [
+    grunt.registerTask('02-package-console', [
         '02-bundle-resources',
         'nugetrestore:restore-console',
         'msbuild:release-console',
         'exec:package-console'
     ]);
-    grunt.registerTask('03-package-winforms', [
+    grunt.registerTask('02-package-winforms', [
         '02-bundle-resources',
         'nugetrestore:restore-winforms',
         'msbuild:release-winforms',
         'exec:package-winforms'
     ]);
 
-    grunt.registerTask('build', ['02-bundle-resources']);
-    grunt.registerTask('package', ['03-package-console', '03-package-winforms']);
+    grunt.registerTask('build', ['01-bundle-resources']);
+    grunt.registerTask('package', ['02-package-console', '02-package-winforms']);
 
     grunt.registerTask('default', ['build']);
 };
