@@ -117,9 +117,6 @@
     <EmbeddedResource Include="img\twitter_normal.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="img\1438859653_Close_Box_Red.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="img\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
