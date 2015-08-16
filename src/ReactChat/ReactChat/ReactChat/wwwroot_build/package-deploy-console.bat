@@ -24,6 +24,10 @@ SET INPUT=%INPUT% %RELEASE%\System.Web.Razor.dll
 
 %ILMERGE% /target:exe /targetplatform:v4,"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5" /out:staging-console\%OUTPUTNAME% /ndebug %INPUT% 
 
+IF NOT EXIST apps (
+mkdir apps
+)
+
 IF EXIST ReactChat-console.7z (
 del ReactChat-console.7z
 )
@@ -33,4 +37,4 @@ del ReactChat-console.exe
 )
 
 cd tools && 7za a ..\ReactChat-console.7z ..\staging-console\* && cd..
-copy /b .\tools\7zsd_All.sfx + config-console.txt + ReactChat-console.7z ReactChat-console.exe
+copy /b .\tools\7zsd_All.sfx + config-console.txt + ReactChat-console.7z .\apps\ReactChat-console.exe

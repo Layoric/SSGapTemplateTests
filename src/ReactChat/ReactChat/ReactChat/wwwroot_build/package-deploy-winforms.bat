@@ -10,6 +10,10 @@ COPY %RELEASE%\ReactChat.AppWinForms.exe .\staging-winforms
 COPY %RELEASE%\CefSharp.BrowserSubprocess.exe .\staging-winforms
 ROBOCOPY "%RELEASE%" ".\staging-winforms" *.dll *.pak *.dat /E
 
+IF NOT EXIST apps (
+mkdir apps
+)
+
 IF EXIST ReactChat-winforms.7z (
 del ReactChat-winforms.7z
 )
@@ -19,4 +23,4 @@ del ReactChat-winforms.exe
 )
 
 cd tools && 7za a ..\ReactChat-winforms.7z ..\staging-winforms\* && cd..
-copy /b .\tools\7zsd_All.sfx + config-winforms.txt + ReactChat-winforms.7z ReactChat-winforms.exe
+copy /b .\tools\7zsd_All.sfx + config-winforms.txt + ReactChat-winforms.7z .\apps\ReactChat-winforms.exe

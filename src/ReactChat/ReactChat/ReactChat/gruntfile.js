@@ -119,7 +119,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-msbuild');
     grunt.loadNpmTasks('grunt-nuget');
 
-    grunt.registerTask('01-bundle-resources', [
+    grunt.registerTask('01-bundle-all', [
         'gulp:wwwroot-copy-partials',
         'gulp:wwwroot-copy-fonts',
         'gulp:wwwroot-copy-images',
@@ -127,20 +127,17 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('02-package-console', [
-        '01-bundle-resources',
+        '01-bundle-all',
         'nugetrestore:restore-console',
         'msbuild:release-console',
         'exec:package-console'
     ]);
-    grunt.registerTask('02-package-winforms', [
-        '01-bundle-resources',
+    grunt.registerTask('03-package-winforms', [
+        '01-bundle-all',
         'nugetrestore:restore-winforms',
         'msbuild:release-winforms',
         'exec:package-winforms'
     ]);
 
-    grunt.registerTask('build', ['01-bundle-resources']);
-    grunt.registerTask('package', ['02-package-console', '02-package-winforms']);
-
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['01-bundle-all', '02-package-console', '03-package-winforms']);
 };
