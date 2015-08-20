@@ -41,13 +41,13 @@ var Header = React.createClass({
                             <a href="/auth/github" className="github"></a>              
                           </span>}
 					<span style={{float:'right', width: '25px'}}>
-						<a onClick={$this.exitApplication}><img src="/img/close.png" style={{height: '30px', 'margin-top':'-5px'}} /></a>
+						<a onClick={$this.exitApplication}><img src="/img/close.png" style={{height: '30px', 'marginTop':'-5px'}} /></a>
 					</span>
                 </div>
                 <ul id="channels" style={{margin: '0 0 0 30px'}}>
                     {this.props.channels.items.map(function(channel) {
                         return (
-                             <li className={$this.props.channels.selected == channel ? 'selected' : ''}
+                             <li className={$this.props.channels.selected == channel ? 'selected' : ''} key={channel}
                                  data-channel={channel}
                                  onClick={$this.selectChannel}>
                                 {channel}

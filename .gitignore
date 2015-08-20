@@ -245,3 +245,7 @@ src/ReactChat/ReactChat/ReactChat/wwwroot_build/ReactChat-winforms.exe
 src/ReactChat/ReactChat/ReactChat/wwwroot_build/apps/ReactChat-console.exe
 src/ReactChat/ReactChat/ReactChat/wwwroot_build/apps/ReactChat-winforms.exe
 src/ReactChat/ReactChat/ReactChat/webdeploy.zip
+src/ReactChat/ReactChat/ReactChat/wwwroot_build/deploy/appsettings.txt
+src/ReactChat/ReactChat/ReactChat.Resources/appsettings.txt
+src/ReactChat/ReactChat/ReactChat.Resources/appsettings.txt
+src/ReactChat/ReactChat/ReactChat/wwwroot_build/deploy/appsettings.txt
