@@ -36,9 +36,7 @@ var Header = React.createClass({
                     {this.props.isAuthenticated
                         ? null
                         : <span>
-                            <a href="/auth/twitter" className="twitter"></a>
-                            <a href="/auth/facebook" className="facebook"></a>
-                            <a href="/auth/github" className="github"></a>              
+                            <a href="/auth/twitter" className="twitter"></a>           
                           </span>}
 					<span style={{float:'right', width: '25px'}}>
 						<a onClick={$this.exitApplication}><img src="/img/close.png" style={{height: '30px', 'marginTop':'-5px'}} /></a>

@@ -198,8 +198,7 @@ module.exports = function (grunt) {
             },
             'wwwroot-copy-deploy-files': function () {
                 return gulp.src('./wwwroot_build/deploy/*.*')
-                    .pipe(newer(resourcesRoot))
-                    .pipe(gulp.dest(resourcesRoot))
+                    .pipe(newer(webRoot))
                     .pipe(gulp.dest(webRoot));
 
             }

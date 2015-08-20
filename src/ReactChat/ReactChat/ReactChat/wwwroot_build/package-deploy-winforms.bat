@@ -7,6 +7,7 @@ MKDIR staging-winforms
 SET TOOLS=.\tools
 SET RELEASE=..\..\ReactChat.AppWinForms\bin\x86\Release
 COPY %RELEASE%\ReactChat.AppWinForms.exe .\staging-winforms
+COPY %RELEASE%\ReactChat.AppWinForms.exe.config .\staging-winforms
 COPY %RELEASE%\CefSharp.BrowserSubprocess.exe .\staging-winforms
 ROBOCOPY "%RELEASE%" ".\staging-winforms" *.dll *.pak *.dat /E
 
