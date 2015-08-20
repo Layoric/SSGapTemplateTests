@@ -141,6 +141,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="wwwroot_build\publish\config.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

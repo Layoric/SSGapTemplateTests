@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 using System.Net;
 using Funq;
 using ReactChat.ServiceInterface;
@@ -8,6 +9,7 @@ using ServiceStack.Configuration;
 using ServiceStack.Razor;
 using ServiceStack.Redis;
 using ServiceStack.Text;
+using Container = Funq.Container;
 
 namespace ReactChat
 {

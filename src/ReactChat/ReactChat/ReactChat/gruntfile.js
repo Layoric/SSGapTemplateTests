@@ -63,6 +63,21 @@ module.exports = function (grunt) {
                     },
                     verbosity: 'quiet'
                 }
+            },
+            'release-webapp': {
+                src: ['.\\ReactChat.csproj'],
+                options: {
+                    projectConfiguration: 'Release',
+                    targets: ['Clean', 'Rebuild'],
+                    stdout: true,
+                    version: 4.0,
+                    maxCpuCount: 4,
+                    buildParameters: {
+                        WarningLevel: 2,
+                        SolutionDir: '..\\..'
+                    },
+                    verbosity: 'quiet'
+                }
             }
         },
         nugetrestore: {
@@ -73,7 +88,11 @@ module.exports = function (grunt) {
             'restore-winforms': {
                 src: '../ReactChat.AppWinForms/packages.config',
                 dest: '../../packages/'
-            }
+            },
+            'restore-webapp': {
+                src: './packages.config',
+                dest: '../../packages/'
+            },
         },
         msdeploy: {
             pack: {
@@ -208,18 +227,24 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('02-package-console', [
-        '01-bundle-all',
         'nugetrestore:restore-console',
         'msbuild:release-console',
+        '01-bundle-all',
         'exec:package-console'
     ]);
     grunt.registerTask('03-package-winforms', [
-        '01-bundle-all',
         'nugetrestore:restore-winforms',
         'msbuild:release-winforms',
+        '01-bundle-all',
         'exec:package-winforms'
     ]);
-    grunt.registerTask('04-deploy-app', ['msdeploy:pack', 'msdeploy:push']);
+    grunt.registerTask('04-deploy-app', [
+        'nugetrestore:restore-webapp',
+        'msbuild:release-webapp',
+        '01-bundle-all',
+        'msdeploy:pack',
+        'msdeploy:push'
+    ]);
 
     grunt.registerTask('default', ['01-bundle-all', '02-package-console', '03-package-winforms']);
 };
