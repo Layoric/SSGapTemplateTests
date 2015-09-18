@@ -1,0 +1,10 @@
+﻿/* winforms */
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.nav > li.nativeApp.winforms   {
+    display: block;
+}
