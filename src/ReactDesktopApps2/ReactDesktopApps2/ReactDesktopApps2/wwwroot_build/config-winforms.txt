@@ -1,0 +1,4 @@
+﻿;!@Install@!UTF-8!
+ExecuteFile="ReactDesktopApps2.AppWinForms.exe"
+GUIMode="2"
+;!@InstallEnd@!

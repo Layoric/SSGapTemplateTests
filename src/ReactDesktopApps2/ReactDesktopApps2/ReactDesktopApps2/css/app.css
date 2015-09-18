@@ -1,0 +1,10 @@
+﻿body {
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.nav > li.nativeApp   {
+    display: none;
+}
